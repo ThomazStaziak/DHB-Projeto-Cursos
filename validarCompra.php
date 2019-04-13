@@ -1,7 +1,7 @@
 <?php 
     include "inc/head.php";
     include "inc/header.php";
-    require "inc/funcoes.php";
+    require "req/funcoesValidacao.php";
     // variáveis
     $nome = $_REQUEST["nomeCompleto"];
     $cpf = $_REQUEST["cpf"];
