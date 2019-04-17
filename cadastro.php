@@ -9,11 +9,13 @@
         $confirmarSenha = $_REQUEST["confirmarSenha"];
         // verifica se a senha é igual ao confirmar senha 
         if ($senha == $confirmarSenha) {
+            // criptografando a senha
+            $senhaCrip = password_hash($senha, PASSWORD_DEFAULT);
             // criando um novo usuário
             $novoUsuario = [
                 "nome" => $nome,
                 "email" => $email,
-                "senha" => $senha,
+                "senha" => $senhaCrip,
             ];
             // cadastro meu usuário no json
             $cadastrou = cadastrarUsuario($novoUsuario);
