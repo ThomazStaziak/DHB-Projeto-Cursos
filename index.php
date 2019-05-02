@@ -4,25 +4,15 @@
     include "req/database.php";
 
     try {
-        $conexao = new PDO($dsn, $db_user, $db_pass); // abre conexão
-
         $query = $conexao->query('SELECT * FROM cursos'); //consulta banco de dados
 
         $cursos = $query->fetchAll(PDO::FETCH_ASSOC); // traz todas as linhas em array associativo
-        var_dump($cursos);
-
+        
+        $conexao = null;
     } catch ( PDOException $Exception ) {
         echo $Exception->getMessage();
     }
 
-    // $cursos = [
-    //     "Full Stack" => ["Curso de desenvolvimento web", 1000.99, "full.jpeg", "fullstack"],
-    //     "Marketing Digital" => ["Curso de Marketing", 1000.98, "marketing.jpg", "marketing"],
-    //     "UX" => ["Curso de User Experience", 9000.98, "ux.jpg", "ux"],
-    //     "Mobile Android" => ["Curso de apps", 1000.97, "android.png", "android"]
-    // ];
-
-    
 ?>
 
    
@@ -59,8 +49,8 @@
                             <h4> Curso de: <?php echo $infosCurso['nome']; ?> </h4>
                             <h4> Preço: R$ <?php echo $infosCurso['preco']; ?> </h4>
                             <form action="validarCompra.php" method="post">
-                                <input type="hidden" name="nomeCurso" value="<?php echo $nomeCurso; ?>">
-                                <input type="hidden" name="precoCurso" value="<?php echo $infosCurso[1]; ?>">
+                                <input type="hidden" name="nomeCurso" value="<?php echo $infosCurso['nome']; ?>">
+                                <input type="hidden" name="precoCurso" value="<?php echo $infosCurso['preco']; ?>">
                                 <div class="input-group col-md-5">
                                     <label for="nomeCompleto">Nome Completo</label>
                                     <input id="nomeCompleto" name="nomeCompleto" type="text" class="form-control">

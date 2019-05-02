@@ -1,22 +1,24 @@
 <?php 
-    // definindo o nome do arquivo
-    $nomeArquivo = "usuarios.json";
 
     function cadastrarUsuario($usuario) {
-        // pegando a variável par dentro função
-        global $nomeArquivo;
-        // pegando o conteúdo do arquivo usuarios.json
-        $usuariosJson = file_get_contents($nomeArquivo);
-        // transformando o json em array associativo
-        $arrayUsuarios = json_decode($usuariosJson, true);
-        // adicionando um novo usuário para o array associativo
-        array_push($arrayUsuarios["usuarios"], $usuario);
-        // transformando o array associativo em json
-        $usuariosJson = json_encode($arrayUsuarios);
-        // colocando json de volta para o arquivo usuarios.json
-        $cadastrou = file_put_contents($nomeArquivo, $usuariosJson);
-        // retronando true ou false
-        return $cadastrou;  
+        try {
+            global $conexao;
+            $query = $conexao->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)"); //adiciona usuario
+    
+            $query->execute([
+                ':nome' => $usuario['nome'],
+                ':email' => $usuario['email'],
+                ':senha' => $usuario['senha']
+            ]);
+
+            $usuario = $query->fetchAll(PDO::FETCH_ASSOC); // traz todas as linhas em array associativo
+            
+            $conexao = null;
+        } catch ( PDOException $Exception ) {
+            echo $Exception->getMessage();
+        }
+
+        return true;
     }
 
     function logarUsuario($email, $senha) {

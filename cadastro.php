@@ -1,4 +1,5 @@
 <?php 
+    require "req/database.php";
     require "req/funcoesLogin.php";
     include "inc/head.php";
 
