@@ -25,8 +25,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">Ações <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Adicionar Produto</a></li>
-                            <li><a href="#">Editar Produto</a></li>
+                            <li><a href="adicionarProduto.php">Adicionar Produto</a></li>
+                            <li><a href="editarProduto.php">Editar Produto</a></li>
                         </ul>
                     </li>
                 </ul>
