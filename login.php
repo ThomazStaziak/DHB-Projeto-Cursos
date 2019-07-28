@@ -3,7 +3,7 @@
     require "req/funcoesLogin.php";
     include "inc/head.php";
 
-    if ($_REQUEST['email']) {
+    if (isset($_REQUEST['email']) && $_REQUEST['email']) {
         // pegando os valores dos inputs
         $email = $_REQUEST["email"];
         $senha = $_REQUEST["senha"];
